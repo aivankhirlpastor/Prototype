@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTUC@8..144,80,100..1000,96,475,79,760,-270,660,655&family=Space+Grotesk:wght@300..700&display=swap');
+
+:root {
+    --nav-height-extent: 2rem;
+    --nav-margin: 15px;
+
+    /* text properties */
+    --main-color-font: #000;
+    --minor-font: "Space Grotesk", Arial, Helvetica, sans-serif;
+    --header-font: var(--minor-font);
+    
+    /* welcome banner properties */
+    --wc-banner-bg: #333;
+    --wc-banner-height: 100px;
+    --wc-banner-padding-block: 26px;
+
+    /* font property for Roboto Flex */
+    --roboto-flex-variation: "slnt" 0,
+        "wdth" 80,
+        "GRAD" 0,
+        "XOPQ" 96,
+        "XTRA" 475,
+        "YOPQ" 79,
+        "YTAS" 760,
+        "YTDE" -270,
+        "YTFI" 660,
+        "YTLC" 500,
+        "YTUC" 655;
+
+}
+
+* {
+    color: var(--main-color-font);
+
+    /* default font appearance: font variables*/
+    font-family: "Roboto Flex", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: var(--roboto-flex-variation);
+}
+
+/* COMMON ELEMENTS */
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--header-font);
+    font-weight: 700;
+    /* font-variation-settings: var(--roboto-flex-variation), "wdth" 100, "YTDE" -180; */
+}
+
+/* button property */
+button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    outline: none;
+    padding-inline: 1.2rem;
+    margin: 0.5rem 0;
+    position: relative;
+
+    transition: color 0.2s ease-out;
+    z-index: 0;
+
+    &::before, &::after {
+        content: "";
+        left: -0.3rem;
+        right: -0.3rem;
+        bottom: -0.35rem;
+        top: 1.5rem;
+        position: absolute;
+        z-index: -1;
+        
+        transition: all 0.2s ease-out;
+    }
+
+    /* a line under the text, visible at hover */
+    &::before {       
+        background-color: transparent; 
+        z-index: 0;
+    }
+
+    /* a line under the text, major fill color at hover */
+    &::after {
+        background-color: #222;
+    }
+}
+
+button:hover {
+    color: white;
+    cursor: pointer;
+
+    /* a line under the text from ::before will become visible at hover */
+    &::before {
+        background-color: #041d34;
+    }
+
+    /* from line to a fill trait as the point of major fill color of ::after at hover */
+    &::after {
+        background-color: #014179;
+        top: -0.25rem;
+    }
+}
+
+/* thematic break */
+hr {
+    margin-block: 5rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: rgb(244, 255, 253);
+}
+
+body {
+    /* set the margin to 0 for <body> */
+    margin: 0;
+}
+
+/* <header> is treated as navigational bar
+    and will stay at the top when the
+    user scrolls on their screen */
+header {
+    align-items: center;
+    /* box-shadow: 0 0.1rem 6px #000; */
+    display: flex;
+    font-size: 1rem;
+    height: var(--nav-height-extent);
+    justify-content: space-between;
+    padding: 15px;
+    position: fixed;
+    left: 0;
+    right: 0;
+
+    /* the company name */
+    h1.company-name {
+        font: 800 1.5em var(--minor-font);
+        letter-spacing: 0.2em;
+    }
+}
+
+nav {
+    ul {
+        display: inline-flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        a {
+            color: var(--main-color-font);
+            font-size: 1.1em;
+            font-variation-settings: var(--roboto-flex-variation);
+            font-weight: 400;
+            padding-inline: 1rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+
+            &:hover {
+                font-weight: 800;
+                /* font-variation-settings: var(--roboto-flex-variation), "wdth" 100, "xtra" 500; */
+            }
+        }
+    }
+}
+
+main {
+    /* set the extra spacing at the top */
+    --main-padding-block: calc(var(--nav-height-extent) + calc(var(--nav-margin) * 2));
+    padding-block: var(--main-padding-block);
+    min-height: calc(90vh - var(--main-padding-block));
+}
+
+article {
+    padding-inline: 24px;
+}
+
+.sec-card {
+    background-color: aqua;
+    display: block;
+    font-size: 1.2rem;
+    padding-block: 1.5rem;
+    /* max-width: 40vw; */
+    align-content: center;
+
+    span.top-legend {
+        font-weight: 200;
+    }
+
+    img {
+        float: left;
+        margin-inline: 7.25%;
+        width: 14em;
+        height: auto;
+
+        &.drop-shadow-efx {
+            box-shadow: 1rem 1rem 0 rgb(40, 43, 46);
+        }
+    }
+
+    img:hover + div {
+        h1, h2 {
+            background-color: #222;
+            color: #fff;
+            letter-spacing: 0.05em;
+        }
+    }
+
+    h1, h2 {
+        background-color: transparent;
+        color: inherit;
+        margin-block: 0.5rem;
+        letter-spacing: 0em;
+        transition: all 0.2s ease;
+    }
+
+    p {
+        font-size: 1.2em;
+        font-variation-settings: var(--roboto-flex-variation), "YTDE" -200;
+    }
+
+    /* customised ordered number element */
+    ol {
+        /* set the original counter into specialised counter */
+        list-style: none;
+        counter-reset: custom-counter;
+
+        li {
+            counter-increment: custom-counter;
+            font-weight: 400;
+
+            /* counters without the dot and lightweighted */
+            &:before {
+                content: counter(custom-counter);
+                font-weight: 250;
+                padding-right: 2rem;
+            }
+        }
+    }
+}
+
+section.welcome-legend {
+    background-color: var(--wc-banner-bg);
+    /* height: var(--wc-banner-height); */
+    padding: var(--wc-banner-padding-block) calc(var(--wc-banner-padding-block) - 5px);
+    text-align: right;
+    
+    * {
+        color: #fff;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+section.proposal-card {
+    display: grid;
+    grid-template-columns: 80vw;
+    gap: 2.5rem;
+    /* justify-items: center; */
+    justify-content: center;
+}
+
+
+footer {
+    /* footer properties */
+    --footer-height: 1.2em;
+
+    background-color: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 1.5rem;
+}
+
