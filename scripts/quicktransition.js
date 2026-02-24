@@ -18,6 +18,7 @@ function redirect(link, click) {
             })
 
             .then(data => {
+                // truncation process variables - used for string slice
                 let start = 0;
                 let end = 0;
                 let sliceddata = 0;
