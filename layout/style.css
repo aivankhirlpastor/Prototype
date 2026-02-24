@@ -4,13 +4,20 @@
     --nav-height-extent: 2rem;
     --nav-margin: 15px;
 
+    /* color palletes */
+    --color-p-1: #00B9DC;
+    --color-p-2: #F39739;
+    --color-p-3: #3C4C53;
+    --color-p-4: #858188;
+    --color-p-5: #921120;
+
     /* text properties */
     --main-color-font: #000;
     --minor-font: "Space Grotesk", Arial, Helvetica, sans-serif;
     --header-font: var(--minor-font);
     
     /* welcome banner properties */
-    --wc-banner-bg: #333;
+    --wc-banner-bg: var(--color-p-3);
     --wc-banner-height: 100px;
     --wc-banner-padding-block: 26px;
 
@@ -26,7 +33,6 @@
         "YTFI" 660,
         "YTLC" 500,
         "YTUC" 655;
-
 }
 
 * {
@@ -47,15 +53,19 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
     font-weight: 700;
     /* font-variation-settings: var(--roboto-flex-variation), "wdth" 100, "YTDE" -180; */
+
+    &.centre-hd {
+        text-align: center;
+    }
 }
 
 /* button property */
 button {
     background-color: transparent;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     outline: none;
-    padding-inline: 1.2rem;
+    padding: 0.2rem 1.2rem;
     margin: 0.5rem 0;
     position: relative;
 
@@ -64,10 +74,10 @@ button {
 
     &::before, &::after {
         content: "";
-        left: -0.3rem;
-        right: -0.3rem;
-        bottom: -0.35rem;
-        top: 1.5rem;
+        left: 0;
+        right: 0;
+        bottom: -0.25em;
+        top: 100%;
         position: absolute;
         z-index: -1;
         
@@ -79,7 +89,7 @@ button {
         background-color: transparent; 
         z-index: 0;
     }
-
+    
     /* a line under the text, major fill color at hover */
     &::after {
         background-color: #222;
@@ -98,8 +108,12 @@ button:hover {
     /* from line to a fill trait as the point of major fill color of ::after at hover */
     &::after {
         background-color: #014179;
-        top: -0.25rem;
+        top: 0;
     }
+}
+
+.grid {
+    display: grid;
 }
 
 /* thematic break */
@@ -108,6 +122,7 @@ hr {
 }
 
 html {
+    font-size: 18px;
     scroll-behavior: smooth;
     background-color: rgb(244, 255, 253);
 }
@@ -177,23 +192,56 @@ article {
     padding-inline: 24px;
 }
 
-.sec-card {
-    background-color: aqua;
-    display: block;
-    font-size: 1.2rem;
-    padding-block: 1.5rem;
-    /* max-width: 40vw; */
-    align-content: center;
+.integration-info.grid {
+    --text-symbol-extent: 3vw;
+    --text-p-extent: 3vw;
 
+    margin: 2%;
+    grid-template-columns: repeat(3, 30%);
+    justify-content: center;
+
+    h2 {
+        grid-area: 1 / 1 / span 1 / span 3 ;
+    }
+
+    > .item-box-definition {
+        display: block;
+        text-align: center;
+
+        * {
+            font-size: clamp(1em, var(--text-p-extent), 2em);
+        }
+
+        span {
+            font-size: clamp(1em, var(--text-symbol-extent), 2em);
+        }
+    }
+
+}
+
+
+.sec-card {
+    /* background-color: aqua; */
+    display: flex;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    gap: 2em;
+    justify-content: space-between;
+    padding-block: 1.5rem;
+    width: fit-content;
+    align-content: center;
+    
     span.top-legend {
         font-weight: 200;
     }
+    
+    > * {
+        width: 50%;
+    }
 
     img {
-        float: left;
-        margin-inline: 7.25%;
-        width: 14em;
-        height: auto;
+        --img-extent: 10em;
+        width: var(--img-extent);
+        height: var(--img-extent);
 
         &.drop-shadow-efx {
             box-shadow: 1rem 1rem 0 rgb(40, 43, 46);
@@ -204,7 +252,7 @@ article {
         h1, h2 {
             background-color: #222;
             color: #fff;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
         }
     }
 
@@ -213,11 +261,11 @@ article {
         color: inherit;
         margin-block: 0.5rem;
         letter-spacing: 0em;
-        transition: all 0.2s ease;
+        transition: color 0.5s ease, letter-spacing 0.5s ease, background-color 0.2s ease;
     }
 
     p {
-        font-size: 1.2em;
+        font-size: 1em;
         font-variation-settings: var(--roboto-flex-variation), "YTDE" -200;
     }
 
@@ -226,6 +274,7 @@ article {
         /* set the original counter into specialised counter */
         list-style: none;
         counter-reset: custom-counter;
+        padding-left: 1em;
 
         li {
             counter-increment: custom-counter;
@@ -235,7 +284,7 @@ article {
             &:before {
                 content: counter(custom-counter);
                 font-weight: 250;
-                padding-right: 2rem;
+                padding-right: 1em;
             }
         }
     }
@@ -252,14 +301,19 @@ section.welcome-legend {
     }
 
     h1 {
-        font-size: 3rem;
+        font-size: 3.25rem;
+        margin-block: 0;
+    }
+
+    p {
+        font-size: 1.2rem;
     }
 }
 
 section.proposal-card {
     display: grid;
-    grid-template-columns: 80vw;
-    gap: 2.5rem;
+    grid-template-columns: repeat(2, 45vw);
+    gap: 1.7rem;
     /* justify-items: center; */
     justify-content: center;
 }
@@ -275,3 +329,15 @@ footer {
     padding: 1.5rem;
 }
 
+/* media queries */
+@media only screen and (max-width: 48rem) {
+    .sec-card {
+        width: 90vw;
+        font-size: clamp(0.8rem, 3vw, 2rem);
+    }
+
+    section.proposal-card {
+        grid-template-columns: none;
+        grid-template-rows: repeat(2, 45vw);
+    }
+}
