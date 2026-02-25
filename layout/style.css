@@ -15,7 +15,7 @@
     --main-color-font: #000;
     --minor-font: "Space Grotesk", Arial, Helvetica, sans-serif;
     --header-font: var(--minor-font);
-    
+
     /* welcome banner properties */
     --wc-banner-bg: var(--color-p-3);
     --wc-banner-height: 100px;
@@ -49,7 +49,12 @@
 /* COMMON ELEMENTS */
 
 /* headings */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--header-font);
     font-weight: 700;
     /* font-variation-settings: var(--roboto-flex-variation), "wdth" 100, "YTDE" -180; */
@@ -72,7 +77,8 @@ button {
     transition: color 0.2s ease-out;
     z-index: 0;
 
-    &::before, &::after {
+    &::before,
+    &::after {
         content: "";
         left: 0;
         right: 0;
@@ -80,17 +86,17 @@ button {
         top: 100%;
         position: absolute;
         z-index: -1;
-        
+
         transition: all 0.2s ease-out;
     }
 
-    /* a line under the text, visible at hover */
-    &::before {       
-        background-color: transparent; 
+    /* an invisible line under the text, but visible at hover */
+    &::before {
+        background-color: transparent;
         z-index: 0;
     }
-    
-    /* a line under the text, major fill color at hover */
+
+    /* a line under the text, major fill color at hover with transition */
     &::after {
         background-color: #222;
     }
@@ -100,7 +106,7 @@ button:hover {
     color: white;
     cursor: pointer;
 
-    /* a line under the text from ::before will become visible at hover */
+    /* a line under the text from ::before will be visible at hover */
     &::before {
         background-color: #041d34;
     }
@@ -122,7 +128,7 @@ hr {
 }
 
 html {
-    font-size: 18px;
+    font-size: 1.2rem;
     scroll-behavior: smooth;
     background-color: rgb(244, 255, 253);
 }
@@ -134,7 +140,7 @@ body {
 
 /* <header> is treated as navigational bar
     and will stay at the top when the
-    user scrolls on their screen */
+    user scrolls on their screen. */
 header {
     align-items: center;
     /* box-shadow: 0 0.1rem 6px #000; */
@@ -193,27 +199,27 @@ article {
 }
 
 .integration-info.grid {
-    --text-symbol-extent: 3vw;
-    --text-p-extent: 3vw;
+    --text-symbol-extent: calc(1.4vw + 1em);
+    --text-p-extent: calc(1.4vw + 1em);
 
     margin: 2%;
     grid-template-columns: repeat(3, 30%);
     justify-content: center;
 
     h2 {
-        grid-area: 1 / 1 / span 1 / span 3 ;
+        grid-area: 1 / 1 / span 1 / span 3;
     }
 
-    > .item-box-definition {
+    >.item-box-definition {
         display: block;
         text-align: center;
 
         * {
-            font-size: clamp(1em, var(--text-p-extent), 2em);
+            font-size: clamp(0.5rem, var(--text-p-extent), 3rem);
         }
 
         span {
-            font-size: clamp(1em, var(--text-symbol-extent), 2em);
+            font-size: clamp(0.5rem, var(--text-symbol-extent), 3rem);
         }
     }
 
@@ -229,16 +235,17 @@ article {
     padding-block: 1.5rem;
     width: fit-content;
     align-content: center;
-    
+
     span.top-legend {
         font-weight: 200;
     }
-    
-    > * {
+
+    >* {
         width: 50%;
     }
 
     img {
+        /* both width and height are the same via var(), no stretched or irregular extent at square. */
         --img-extent: 10em;
         width: var(--img-extent);
         height: var(--img-extent);
@@ -248,15 +255,19 @@ article {
         }
     }
 
-    img:hover + div {
-        h1, h2 {
+    /* basic special effects on headings on image hover */
+    img:hover+div {
+
+        h1,
+        h2 {
             background-color: #222;
             color: #fff;
             letter-spacing: 0.03em;
         }
     }
 
-    h1, h2 {
+    h1,
+    h2 {
         background-color: transparent;
         color: inherit;
         margin-block: 0.5rem;
@@ -295,7 +306,7 @@ section.welcome-legend {
     /* height: var(--wc-banner-height); */
     padding: var(--wc-banner-padding-block) calc(var(--wc-banner-padding-block) - 5px);
     text-align: right;
-    
+
     * {
         color: #fff;
     }
@@ -318,6 +329,74 @@ section.proposal-card {
     justify-content: center;
 }
 
+/* subscription card */
+section.subscription-plans #subscription-banner {
+    display: flex;
+    font-size: clamp(0.5rem, 2vw, 1.125rem);
+    justify-content: space-evenly;
+
+    .sub-card {
+        background-color: #b9b9b9;
+        border-radius: 1em;
+        padding: 20px 12px;
+        width: 13em;
+
+        h3,
+        .price-tag {
+            margin-block: 0;
+            text-align: center;
+        }
+
+        ul li {
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-block: 6%;
+            letter-spacing: 0.015em;
+            /* font-family: var(--minor-font); */
+        }
+
+        /* * {
+            color: #fff;
+        } */
+    }
+}
+
+/* for 404 html styling */
+
+main:has(.middle-form-flex) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.middle-form-flex {
+    align-items: center;
+    border: 0.15rem solid transparent;
+    border-top-color: #00000055;
+    border-bottom-color: #00000055;
+    display: flex;
+    font-size: clamp(0.5rem, 3vw, 1.2rem);
+    gap: 2rem;
+    justify-content: center;
+    padding-block: 3em;
+
+    #sfx-orb {
+        font-size: 4em;
+        margin: 0;
+        text-shadow: 0.033em 0.033em 0.005em var(--color-p-3),
+            0.067em 0.067em 0.01em var(--color-p-1),
+            /* 0.1em 0.1em 0 var(--color-p-2), */
+            -0.033em -0.033em 0.005em var(--color-p-4),
+            -0.067em -0.067em 0.01em var(--color-p-2);
+    }
+
+    p {
+        font: 400 1.1em var(--minor-font);
+    }
+}
+
+
+
 
 footer {
     /* footer properties */
@@ -339,5 +418,12 @@ footer {
     section.proposal-card {
         grid-template-columns: none;
         grid-template-rows: repeat(2, 45vw);
+    }
+
+    .middle-form-flex {
+        gap: 0;
+        justify-content: center;
+        flex-direction: column;
+
     }
 }
