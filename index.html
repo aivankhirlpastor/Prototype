@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML coders</title>
-    <link rel="stylesheet" href="layout/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -16,10 +16,11 @@
             <ul>
                 <li><a id="home" href="./index.html">HOME</a></li>
                 <li><a id="blogs" href="./blogs.html">BLOGS</a></li>
-                <li><a id="blogs" href="./presentation.html">PRESENTATIONS</a></li>
+                <li><a id="blogs" href="./signup.html">SIGN UP</a></li>
                 <li><a id="contact" href="./contact.html">CONTACT</a></li>
             </ul>
         </nav>
+        <button type="button" id="hamburger-menu">hamburger menu</button>
     </header>
 
     <aside></aside>
@@ -60,14 +61,13 @@
 
         <h2 class="centre-hd">SUGGESTED COURSE THIS YEAR</h2>
 
-        
         <section class="proposal-card">
             <div class="sec-card classic-essentials">
                 <img class="drop-shadow-efx" src="https://www.ideabook.com/wp-content/uploads/2016/05/web-design.jpg">
                 
                 <div>
                     <span class="top-legend">integrity</span>
-                    <h2>Gooone So Classic</h2>
+                    <h2>Go To So Classic</h2>
                     <p>Your first journey through HTML coding</p>
                     <ol>
                         <li>HTML</li>
@@ -92,18 +92,30 @@
                         <li>Structure</li>
                     </ol>
     
-                    <button type="button">GET PRO+</button>
+                    <button type="button">SUBSCRIBE</button>
     
                 </div>
             </div>
         </section>
+
+        <h2 class="centre-hd">PLANS</h2>
+
         <section class="subscription-plans">
-            <h2 class="centre-hd">PLANS</h2>
+
+            <div class="cc-account">
+                <h3>PLANS</h3>
+                <p>Description here</p>
+                <button type="button" id="show-more">SHOW MORE</button>
+            </div>
 
             <div id="subscription-banner">
-                <div class="sub-card essentials">
-                    <h3>ESSENTIALS</h3>
-                    <p class="price-tag">$15/month</p>
+
+                <!-- PLAN CARD: starter -->
+                <div class="sub-card stacked-under starter">
+                    <div class="card-plan">
+                        <span class="type-plan">STARTER</span>
+                        <h3>$12<span>/month</span></h3>
+                    </div>
 
                     <ul class="features">
                         <li>Everything on "Free"</li>
@@ -111,21 +123,28 @@
                         <li>15 credits per month</li>
                     </ul>
                 </div>
-                <div class="sub-card pro">
-                    <h3>PRO</h3>
-                    <p class="price-tag">$20/month</p>
+                <!-- PLAN CARD: starter -->
+
+                <div class="sub-card stacked-under essentials">
+                    <div class="card-plan">
+                        <span class="type-plan">ESSENTIALS</span>
+                        <h3>$25<span>/month</span></h3>
+                    </div>
 
                     <ul class="features">
-                        <li>Everything on "Essentials"</li>
+                        <li>Everything on "Starter"</li>
                         <li>35 credits per month</li>
                     </ul>
                 </div>
-                <div class="sub-card ultimate popular">
-                    <h3>ULTIMATE</h3>
-                    <p class="price-tag">$40/month</p>
+                
+                <div class="sub-card front ultimate popular">
+                    <div class="card-plan">
+                        <span class="type-plan">ULTIMATE</span>
+                        <h3>$40<span>/month</span></h3>
+                    </div>
 
                     <ul class="features">
-                        <li>Everything on "Pro"</li>
+                        <li>Everything on "Essentials"</li>
                         <li>Unlimited all access to premium contents</li>
                     </ul>
                 </div>
@@ -138,7 +157,7 @@
         name
     </footer>
 
-    <script src="./scripts/quicktransition.js"></script>
+    <script src="./quicktransition.js"></script>
 
 </body>
 </html>
