@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTUC@8..144,80,100..1000,96,475,79,760,-270,660,655&family=Space+Grotesk:wght@300..700&display=swap');
+
+:root {
+    --nav-height-extent: 2rem;
+    --nav-margin: 15px;
+
+    /* color palletes */
+    --color-p-1: #00B9DC;
+    --color-p-2: #F39739;
+    --color-p-3: #3C4C53;
+    --color-p-4: #858188;
+    --color-p-5: #921120;
+
+    /* text properties */
+    --main-color-font: #000;
+    --space-grotesk: "Space Grotesk", Arial, Helvetica, sans-serif;
+    --header-font: var(--space-grotesk);
+
+    /* welcome banner properties */
+    --wc-banner-bg: var(--color-p-3);
+    --wc-banner-height: 100px;
+    --wc-banner-padding-block: 26px;
+
+    /* font property for Roboto Flex */
+    --roboto-flex-variation: "slnt" 0,
+        "wdth" 80,
+        "GRAD" 0,
+        "XOPQ" 96,
+        "XTRA" 475,
+        "YOPQ" 79,
+        "YTAS" 760,
+        "YTDE" -270,
+        "YTFI" 660,
+        "YTLC" 500,
+        "YTUC" 655;
+}
+
+* {
+    color: var(--main-color-font);
+
+    /* default font appearance: font variables*/
+    font-family: "Roboto Flex", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: var(--roboto-flex-variation);
+}
+
+/* COMMON ELEMENTS */
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--header-font);
+    font-weight: 700;
+    /* font-variation-settings: var(--roboto-flex-variation), "wdth" 100, "YTDE" -180; */
+
+    &.centre-hd {
+        text-align: center;
+    }
+}
+
+/* button property */
+button {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    padding: 0.2rem 1.2rem;
+    margin: 0.5rem 0;
+    position: relative;
+
+    transition: color 0.2s ease-out;
+    z-index: 0;
+
+    &::before,
+    &::after {
+        content: "";
+        left: 0;
+        right: 0;
+        bottom: -0.25em;
+        top: 100%;
+        position: absolute;
+        z-index: -1;
+
+        transition: all 0.2s ease-out;
+    }
+
+    /* an invisible line under the text, but visible at hover */
+    &::before {
+        background-color: transparent;
+        z-index: 0;
+    }
+
+    /* a line under the text, major fill color at hover with transition */
+    &::after {
+        background-color: #222;
+    }
+}
+
+button:hover {
+    color: white;
+    cursor: pointer;
+
+    /* a line under the text from ::before will be visible at hover */
+    &::before {
+        background-color: #041d34;
+    }
+
+    /* from line to a fill trait as the point of major fill color of ::after at hover */
+    &::after {
+        background-color: #014179;
+        top: 0;
+    }
+}
+
+.grid {
+    display: grid;
+}
+
+/* thematic break */
+hr {
+    margin-block: 5rem;
+}
+
+html {
+    font-size: 1.2rem;
+    scroll-behavior: smooth;
+    background-color: rgb(244, 255, 253);
+}
+
+body {
+    /* set the margin to 0 for <body> */
+    margin: 0;
+}
+
+/* <header> is treated as navigational bar
+    and will stay at the top when the
+    user scrolls on their screen. */
+header {
+    align-items: center;
+    /* box-shadow: 0 0.1rem 6px #000; */
+    display: flex;
+    font-size: 1rem;
+    height: var(--nav-height-extent);
+    justify-content: space-between;
+    padding: 15px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 5999;
+
+    /* the company name */
+    h1.company-name {
+        font: 800 1.5em var(--space-grotesk);
+        letter-spacing: 0.12em;
+    }
+}
+
+nav {
+    ul {
+        display: inline-flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        text-wrap: nowrap;
+
+        a {
+            color: var(--main-color-font);
+            font-size: 1.1em;
+            font-variation-settings: var(--roboto-flex-variation);
+            font-weight: 400;
+            padding-inline: 1rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+
+            &:hover {
+                font-weight: 800;
+                /* font-variation-settings: var(--roboto-flex-variation), "wdth" 100, "xtra" 500; */
+            }
+        }
+    }
+}
+
+nav + #hamburger-menu {
+    display: none;
+}
+
+main {
+    /* set the extra spacing at the top */
+    --main-padding-block: calc(var(--nav-height-extent) + calc(var(--nav-margin) * 2));
+    padding-block: var(--main-padding-block);
+    min-height: calc(90vh - var(--main-padding-block));
+}
+
+article {
+    padding-inline: 24px;
+}
+
+.integration-info.grid {
+    --text-symbol-extent: calc(1.4vw + 1em);
+    --text-p-extent: calc(1.4vw + 1em);
+
+    margin: 2%;
+    grid-template-columns: repeat(3, 30%);
+    justify-content: center;
+
+    h2 {
+        grid-area: 1 / 1 / span 1 / span 3;
+    }
+
+    >.item-box-definition {
+        display: block;
+        text-align: center;
+
+        * {
+            font-size: clamp(0.5rem, var(--text-p-extent), 3rem);
+        }
+
+        span {
+            font-size: clamp(0.5rem, var(--text-symbol-extent), 3rem);
+        }
+    }
+
+}
+
+
+.sec-card {
+    /* background-color: aqua; */
+    display: flex;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    gap: 2em;
+    justify-content: space-between;
+    padding-block: 1.5rem;
+    width: fit-content;
+    align-content: center;
+
+    span.top-legend {
+        font-weight: 200;
+    }
+
+    >* {
+        width: 50%;
+    }
+
+    img {
+        /* both width and height are the same via var(), no stretched or irregular extent at square. */
+        --img-extent: 10em;
+        width: var(--img-extent);
+        height: var(--img-extent);
+
+        &.drop-shadow-efx {
+            box-shadow: 1rem 1rem 0 rgb(40, 43, 46);
+        }
+    }
+
+    /* basic special effects on headings on image hover */
+    img:hover+div {
+
+        h1,
+        h2 {
+            background-color: #222;
+            color: #fff;
+            letter-spacing: 0.03em;
+        }
+    }
+
+    h1,
+    h2 {
+        background-color: transparent;
+        color: inherit;
+        margin-block: 0.5rem;
+        letter-spacing: 0em;
+        transition: color 0.5s ease, letter-spacing 0.5s ease, background-color 0.2s ease;
+    }
+
+    p {
+        font-size: 1em;
+        font-variation-settings: var(--roboto-flex-variation), "YTDE" -200;
+    }
+
+    /* customised ordered number element */
+    ol {
+        /* set the original counter into specialised counter */
+        list-style: none;
+        counter-reset: custom-counter;
+        padding-left: 1em;
+
+        li {
+            counter-increment: custom-counter;
+            font-weight: 400;
+
+            /* counters without the dot and lightweighted */
+            &:before {
+                content: counter(custom-counter);
+                font-weight: 250;
+                padding-right: 1em;
+            }
+        }
+    }
+}
+
+section.welcome-legend {
+    background-color: var(--wc-banner-bg);
+    /* height: var(--wc-banner-height); */
+    padding: var(--wc-banner-padding-block) calc(var(--wc-banner-padding-block) - 5px);
+    text-align: right;
+
+    * {
+        color: #fff;
+    }
+
+    h1 {
+        font-size: 3.25rem;
+        margin-block: 0;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+}
+
+section.proposal-card {
+    display: grid;
+    grid-template-columns: repeat(2, 45vw);
+    gap: 1.7rem;
+    /* justify-items: center; */
+    justify-content: center;
+}
+
+/* subscription card */
+section.subscription-plans {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 5%;
+
+    .cc-account {
+        opacity: 1;
+        transition: opacity 400ms ease;
+    }
+
+    &:has(.disclosed) .cc-account {
+        opacity: 0;
+    }
+
+}
+
+section.subscription-plans .cc-account {
+    text-align: center;
+}
+
+section.subscription-plans #subscription-banner {
+    --s-card-border-radius: 1em;
+    --s-card-bg-special: #1e002acc;
+    --s-card-preferred-font-size: 2vw;
+
+    --s-card-standard: none;
+    --s-card-starter: #e19912;
+    --s-card-essentials: #0feb1a;
+    --s-card-ultimate: #6d009c;
+
+    display: inherit;
+    font-size: clamp(0.5rem, var(--s-card-preferred-font-size), 1.125rem);
+    justify-content: space-between;
+    position: relative;
+
+    .sub-card {
+        --s-drop-shadow: 0 0.3em 20px #000000aa;
+
+        background-color: #ffffff;
+        border-radius: var(--s-card-border-radius);
+        box-shadow: var(--s-drop-shadow);
+        min-height: 20em;
+        position: inherit;
+        width: 13em;
+
+        .card-plan {
+            --s-card-padding: 2.5em;
+            /* background-color: rgb(0, 247, 255); */
+            border-radius: var(--s-card-border-radius) var(--s-card-border-radius) 0 0;
+            padding-block: var(--s-card-padding);
+
+        }
+        
+        h3, .type-plan {
+            margin-block: 0;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* for billing date from h3 */
+        h3 span {
+            font: 400 0.5em var(--space-grotesk);
+        }
+        
+        .type-plan {
+            display: block;
+            font-size: 1.2em;
+        }
+        
+        ul {
+            padding-inline: 15% 5%;
+        }
+
+        ul li {
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-block: 6%;
+            letter-spacing: 0.015em;
+            padding-inline: 0;
+            /* font-family: var(--space-grotesk); */
+        }
+    }
+
+    /* Varied plan styling such as starter, essentials, and ulimate. */
+    .sub-card {
+        &.starter {
+            --s-bill-color: var(--s-card-starter);
+            background-color: #ffffff;
+        }
+        
+        &.essentials {
+            .card-plan {
+                background-color: var(--s-card-essentials);
+            }
+        }
+        
+        &.ultimate {
+            --s-bill-color: var(--s-card-ultimate);
+        }
+        
+        .card-plan h3 {
+            color: var(--s-bill-color);
+        }
+    }
+
+    .sub-card {
+        --s-card-offset-x-step: -6.5em;
+        --s-card-scale-step: 0.08;
+        
+        &.stacked-under {
+            position: absolute;
+
+            /* from descending to ascending order for :nth-child,
+               from ascending to descending order for operands */
+            &:nth-child(2) {
+                transform: translateX(calc(var(--s-card-offset-x-step) * 1));
+                scale: calc(1 - (var(--s-card-scale-step) * 1));
+            }
+            &:nth-child(1) {
+                transform: translateX(calc(var(--s-card-offset-x-step) * 2));
+                scale: calc(1 - (var(--s-card-scale-step) * 2));
+            }
+
+            /* https://www.cssportal.com/css-cubic-bezier-generator/ */
+            transition: scale 0.8s cubic-bezier(0.00, 0.88, 0.10, 1.00),
+                transform 0.8s cubic-bezier(0.00, 0.00, 0.07, 0.96);
+        }
+    }
+
+    &.disclosed {
+        .sub-card {
+            --s-card-offset-x-step: -15em;
+            --s-card-scale-step: 0.02;
+        }
+
+        .sub-card.stacked-under {
+            transition: scale 0.8s cubic-bezier(0.75, 0.02, 0.72, 0.90),
+                transform 0.8s cubic-bezier(0.00, 0.00, 0.07, 0.96);
+        }
+    }
+
+    .sub-card.popular {
+        --s-card-glass-efx: blur(20px) saturate(180%) contrast(60%);
+
+        background-color: var(--s-card-bg-special);
+        border: 0.1em solid rgba(82, 5, 88, 0.55);
+        box-shadow: var(--s-drop-shadow),
+            inset 0.2em 0.2em 1em #ffffff77,
+            inset -0.2em -0.2em 1em #00000077;
+
+        /* glass effects */
+        backdrop-filter: var(--s-card-glass-efx);
+        -webkit-backdrop-filter: var(--s-card-glass-efx);
+        
+        .card-plan {            
+            * {
+                color: #ffffff;
+            }
+        }
+        
+        ul li {
+            color: #ffffff;
+        }
+    }
+}
+
+/* for 404 html styling */
+
+main:has(.middle-form-flex) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.middle-form-flex {
+    align-items: center;
+    border: 0.15rem solid transparent;
+    border-top-color: #00000055;
+    border-bottom-color: #00000055;
+    display: flex;
+    font-size: clamp(0.5rem, 3vw, 1.2rem);
+    gap: 2rem;
+    justify-content: center;
+    padding-block: 3em;
+
+    #sfx-orb {
+        font-size: 4em;
+        margin: 0;
+        text-shadow: 0.033em 0.033em 0.005em var(--color-p-3),
+            0.067em 0.067em 0.01em var(--color-p-1),
+            /* 0.1em 0.1em 0 var(--color-p-2), */
+            -0.033em -0.033em 0.005em var(--color-p-4),
+            -0.067em -0.067em 0.01em var(--color-p-2);
+    }
+
+    p {
+        font: 400 1.1em var(--space-grotesk);
+    }
+}
+
+
+
+
+footer {
+    /* footer properties */
+    --footer-height: 1.2em;
+
+    background-color: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 1.5rem;
+}
+
+/* media queries */
+@media only screen and (max-width: 48rem) {
+    nav {
+        display: none;
+        position: absolute;
+    }
+
+    nav + #hamburger-menu {
+        display: block;
+    }
+
+    .sec-card {
+        width: 90vw;
+        font-size: clamp(0.8rem, 3vw, 2rem);
+    }
+
+    section.proposal-card {
+        grid-template-columns: none;
+        grid-template-rows: repeat(2, auto);
+    }
+
+    /* subscription card */
+
+    section.subscription-plans {
+        flex-direction: column;
+        gap: 3em;
+    }
+
+    section.subscription-plans #subscription-banner {
+        --s-card-border-radius: 2em;
+        --s-card-preferred-font-size: 3.15vw;
+    
+        flex-direction: column;
+        gap: 2em;
+
+        .sub-card {
+            display: flex;
+            min-height: 10em;
+            width: auto;
+
+            .card-plan {
+                --s-card-padding: 1.7em;
+
+                border-radius: var(--s-card-border-radius) 0 0 var(--s-card-border-radius);
+                padding-inline: var(--s-card-padding);
+            }
+    
+            ul {
+                padding-inline-start: 6%;
+            }
+        };
+
+        .sub-card.stacked-under {
+            --s-card-offset-x-step: 0;
+            --s-card-scale-step: 0;
+
+            position: relative;
+            transition: none;
+        }
+    }
+
+    .middle-form-flex {
+        gap: 0;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
