@@ -18,8 +18,8 @@
 
     /* welcome banner properties */
     --wc-banner-bg: var(--color-p-3);
-    --wc-banner-height: 100px;
-    --wc-banner-padding-block: 26px;
+    --wc-banner-height: 12rem;
+    --wc-banner-padding-block: 30px;
 
     /* font property for Roboto Flex */
     --roboto-flex-variation: "slnt" 0,
@@ -57,6 +57,10 @@ h1, h2, h3, h4, h5, h6 {
     &.centre-hd {
         text-align: center;
     }
+}
+
+strong {
+    font-weight: 700;
 }
 
 /* button property */
@@ -303,11 +307,12 @@ article {
     }
 }
 
-section.welcome-legend {
+section.legend {
     background-color: var(--wc-banner-bg);
-    /* height: var(--wc-banner-height); */
+    height: var(--wc-banner-height);
     padding: var(--wc-banner-padding-block) calc(var(--wc-banner-padding-block) - 5px);
     text-align: right;
+    align-content: end;
 
     * {
         color: #fff;
@@ -523,6 +528,7 @@ main:has(.middle-form-flex) {
     justify-content: center;
     padding-block: 3em;
 
+    /* the graphic drop shadows for the numeral "404" */
     #sfx-orb {
         font-size: 4em;
         margin: 0;
@@ -538,6 +544,150 @@ main:has(.middle-form-flex) {
     }
 }
 
+/* BLOG MENU IN GRIDS */
+/* section.blog-menu {
+} */
+
+section.blog-menu .post-navigation {
+    font-size: clamp(0.5rem, 2vw, 2rem);
+
+    gap: 1rem;
+    grid-template-columns: repeat(3, 15em);
+    /* grid-auto-rows: 25em; */
+    justify-content: center;
+    padding: 1%;
+
+    /* blocks for content */
+    .blocks {
+        --blog-border-r-container: 1em;
+        --blog-padding: 1em;
+        --blog-cover-height: 14em;
+
+        border-radius: var(--blog-border-r-container);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* cover clipped and avoids the overflow */
+        /* padding: 0.75em; */
+    }
+    
+    .blocks img {
+        --blog-img-container-extent: 25vw;
+        
+        align-self: center;
+        /* scaled and best fit for image on any size*/
+        filter: none;
+        object-fit: cover;
+        object-position: center;
+        scale: 1;
+        width: 100%;
+        height: 100%;
+        transition: filter 0.4s ease, scale 0.4s ease;
+    }
+    
+    /* the cover of the image and text contents inside it */
+    .blocks .card-cover {
+        border-radius: var(--blog-border-r-container);
+        height: var(--blog-cover-height);
+        position: relative;
+        
+        /* This is the holder of the overall context such as title and the brief information within it. */
+        .inner-subject {
+            --blog-holder-glass-efx: blur(3px) saturate(180%);
+            --blog-holder-text-context: #ffffff;
+            --blog-tags-glass-efx: var(--blog-holder-glass-efx);
+
+            color: var(--blog-holder-text-context);
+            position: absolute;
+            bottom: 0;
+
+            > div {
+                padding-inline: 0.8em;
+            }
+
+            .blog-tags, .title-heading, .overview-disclose {
+                color: inherit;
+            }
+        }
+
+        .inner-subject span.profile {
+            font-size: 0.7em;
+        }
+
+
+        /* tags of the blogs */
+        .inner-subject .blog-tags {
+            font-size: 0.8em;
+            margin-block: 0.7em;
+        }
+
+        .inner-subject .blog-tags span, .inner-subject > .title-heading span.profile {
+            backdrop-filter: var(--blog-tags-glass-efx);
+            -webkit-backdrop-filter: var(--blog-tags-glass-efx);
+            background-color: #72727233;
+            color: inherit;
+            border-radius: 0.4em;
+            padding: 0.15em 0.5em;
+        }
+
+        .inner-subject .title-heading {
+            padding-block-end: 0.8em;
+
+            h2 {
+                color: inherit;
+                font-size: 1.8em;
+                margin: 0;
+                text-shadow: 0.05em 0.05em 0 #cfcfcf45;
+                vertical-align: bottom;
+                -webkit-text-stroke: 0.03em #000;
+
+                transition: font-size 0.4s ease;
+            }
+        }
+
+        /* brief information about the blog; effect and show on hover */
+        .inner-subject .overview-disclose {
+            border-top: 0.1em solid #ffffff0b;
+            backdrop-filter: var(--blog-holder-glass-efx);
+            -webkit-backdrop-filter: var(--blog-holder-glass-efx);
+            background-color: #dadada11;
+            color: var(--blog-holder-text-context);
+            max-height: 0;
+            padding-block: 0;
+
+            transition: all 0.4s ease;
+            
+            * {
+                color: inherit;
+            }
+
+            p {
+                margin-block: 0.3em;
+                font-weight: 200;
+            }
+
+        }
+    }
+
+    .blocks:hover {
+        cursor: pointer;
+
+        img {
+            filter: saturate(300%) contrast(90%);
+            scale: 1.1;
+        }
+    }
+
+    .blocks:hover .card-cover{
+        .inner-subject .overview-disclose { 
+            max-height: 4.4em;
+            padding-block: 0.9em;
+        }
+
+        .inner-subject .title-heading h2 {
+            font-size: 1.5em;
+        }
+    }
+}
 
 
 
