@@ -85,6 +85,16 @@ document.querySelectorAll("a.nav-link").forEach(e => {
     })
 });
 
+document.addEventListener("scroll", (sc) => {
+    const navTarget = document.querySelector("header");
+
+    if (window.scrollY > 58) {
+        navTarget.id = "blackkey-contrast";
+    } else {
+        navTarget.removeAttribute("id");
+    }
+})
+
 window.addEventListener("keydown", (k) => {
     if (k.key = "Control") {
         controlpressed = true;

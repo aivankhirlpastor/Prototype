@@ -141,6 +141,9 @@ body {
     and will stay at the top when the
     user scrolls on their screen. */
 header {
+    --nav-text-color: var(--main-color-font);
+    --nav-text-color-active: #ffffff;
+
     align-items: center;
     /* box-shadow: 0 0.1rem 6px #000; */
     display: flex;
@@ -151,12 +154,21 @@ header {
     position: fixed;
     left: 0;
     right: 0;
+    transition: background-color 0.2s ease;
     z-index: 5999;
 
     /* the company name */
     h1.company-name {
+        color: var(--nav-text-color);
         font: 800 1.5em var(--space-grotesk);
         letter-spacing: 0.12em;
+
+        transition: color 0.25s ease;
+    }
+
+    &#blackkey-contrast {
+        --nav-text-color: #ffffff;
+        background-color: #000000;
     }
 }
 
@@ -173,7 +185,7 @@ nav {
         text-wrap: nowrap;
 
         a {
-            color: var(--main-color-font);
+            color: var(--nav-text-color);
             font-size: 1.1em;
             font-variation-settings: var(--roboto-flex-variation);
             font-weight: 400;
@@ -184,7 +196,7 @@ nav {
         }
 
         a.active {
-            color: #ffffff;
+            color: var(--nav-text-color-active);
             font-weight: 800;
 
             &:hover::after {
