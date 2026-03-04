@@ -2,7 +2,7 @@
 
 let controlpressed = false;
 
-function redirect(link, click) {
+function redirect(link, click, scrollToTop) {
     if (!controlpressed) {
         click.preventDefault ? click.preventDefault() : undefined;
         fetch(link)
@@ -52,16 +52,36 @@ function redirect(link, click) {
 
                 document.querySelector("main").innerHTML = sliceddata ? sliceddata : "";
                 click.preventDefault ? history.pushState({ page: `${link}` }, "Test", `${link}`) : null;
+
+                document.querySelectorAll("a.nav-link").forEach(to => {
+                    let processLink = link;
+                    to.classList.remove("active");
+
+                    for (let mei = 0; mei < processLink.length; mei++) {
+                        if (to.getAttribute("href") === processLink.substring(mei)) {
+                            processLink = processLink.substring(mei);
+                            break;
+                        }
+                    }
+
+                    if (to.getAttribute("href") === processLink) {
+                        to.classList.add("active");
+                    }
+                });
+
+                if (scrollToTop) {
+                    window.scrollTo(0, 0);
+                }
             });
         
     }
 }
 
-document.querySelectorAll("a").forEach(e => {
+document.querySelectorAll("a.nav-link").forEach(e => {
     console.log(e.getAttribute("href"));
 
     e.addEventListener("click", (l) => {
-        redirect(e.getAttribute("href"), l);
+        redirect(e.getAttribute("href"), l, true);
     })
 });
 
@@ -77,5 +97,5 @@ window.addEventListener("keyup", () => {
 
 window.addEventListener("popstate", (e) => {
     const p = window.location.pathname;
-    redirect(p, 0, e)
+    redirect(p, 0)
 })
