@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOGS</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
 </head>
 <body>
     <header>
@@ -32,6 +33,32 @@
 
             <div class="post-navigation grid">
                 
+                <!-- swiper base -->
+                <div class="blog-blocks extends swiper" id="recent-swiper">
+                    <!-- swiper transition -->
+                    <div class="swiper-wrapper">
+                        <!-- Image and text container -->
+                        <div class="card-cover swiper-slide">
+                            <img src="./images/blog-thumbnail-main.png" alt="The code lines of a piece of CSS file">
+                            
+                            <div class="inner-subject">
+                                <!-- tags -->
+                                <div class="blog-tags">
+                                    <span>Web Application</span>
+                                    <span>Media</span>
+                                </div>
+    
+                                <!-- blog title -->
+                                <div class="title-heading">
+                                    <h2>A Crown For The Coders</h2>
+                                    <span class="profile">- unknown -</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
                 <!-- A CROWN FOR THE CODERS - example layout of block card -->
                 <div class="blog-blocks" id="v-2501">
                     <!-- Image and text container -->
@@ -58,6 +85,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <!-- THE CORES OF CSS STYLING - example layout of block card -->
                 <div class="blog-blocks" id="v-7933">
                     <!-- Image and text container -->
@@ -116,5 +145,7 @@
     </footer>
 
     <script src="./quicktransition.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    
 </body>
 </html>
