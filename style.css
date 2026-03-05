@@ -630,6 +630,51 @@ section.blog-menu .post-navigation {
         overflow: hidden; /* cover clipped and avoids the overflow */
         /* padding: 0.75em; */
     }
+
+    .blog-blocks.extends {
+        grid-column-end: span 2;
+    }
+    
+    .blog-blocks.swiper {
+        width: 100%;
+        
+        .inner-subject {
+            backdrop-filter: var(--blog-holder-glass-efx);
+            -webkit-backdrop-filter: var(--blog-holder-glass-efx);
+            background-color: #71717141;
+            padding-block: 0.3em;
+            width: 100%;
+        }
+
+        .inner-subject .blog-tags {
+            span.profile:has(+ span:not(.profile)) {
+                --profile-margin-right: 1em;
+                --profile-bullet-offset: calc(var(--profile-margin-right) / 1.2);
+
+                margin-right: var(--profile-margin-right);
+
+                &::after {
+                    content: "•";
+                    /* background-color: #ffffff; */
+                    position: absolute;
+                    right: calc(-1 * var(--profile-bullet-offset));
+                }
+            }
+        }
+
+        .icon {
+            background-color: #00000050;
+            
+            svg {
+                width: 0.8em;
+                filter: invert(1);
+            }
+        }
+
+        .swiper-pagination {
+            bottom: 0.2em;
+        }
+    }
     
     .blog-blocks img {
         --blog-img-container-extent: 25vw;
@@ -670,18 +715,13 @@ section.blog-menu .post-navigation {
             }
         }
 
-        .inner-subject span.profile {
-            font-size: 0.7em;
-        }
-
-
         /* tags of the blogs */
         .inner-subject .blog-tags {
             font-size: 0.8em;
             margin-block: 0.7em;
         }
 
-        .inner-subject .blog-tags span, .inner-subject > .title-heading span.profile {
+        .inner-subject .blog-tags span, .inner-subject .blog-tags span.profile, .inner-subject > .title-heading span.profile {
             backdrop-filter: var(--blog-tags-glass-efx);
             -webkit-backdrop-filter: var(--blog-tags-glass-efx);
             background-color: #72727233;
@@ -728,6 +768,10 @@ section.blog-menu .post-navigation {
                 font-weight: 200;
             }
 
+            span.profile {
+                font-size: 0.7em;
+            }
+
         }
     }
 
@@ -736,11 +780,14 @@ section.blog-menu .post-navigation {
 
         img {
             filter: saturate(300%) contrast(70%);
+        }
+        
+        &:not(.swiper) img {
             scale: 1.1;
         }
     }
 
-    .blog-blocks:hover .card-cover{
+    .blog-blocks:hover:not(.extends) .card-cover{
         .inner-subject .blog-tags span {
             background-color: #dadada99;
             color: #000000;
