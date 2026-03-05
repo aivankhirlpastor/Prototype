@@ -1,4 +1,5 @@
 // console.log(document.querySelectorAll("a"));
+import { applySwiper } from './swiper.js';
 
 let controlpressed = false;
 
@@ -72,6 +73,8 @@ function redirect(link, click, scrollToTop) {
                 if (scrollToTop) {
                     window.scrollTo(0, 0);
                 }
+
+                applySwiper();
             });
         
     }
@@ -84,16 +87,6 @@ document.querySelectorAll("a.nav-link").forEach(e => {
         redirect(e.getAttribute("href"), l, true);
     })
 });
-
-document.addEventListener("scroll", (sc) => {
-    const navTarget = document.querySelector("header");
-
-    if (window.scrollY > 58) {
-        navTarget.id = "blackkey-contrast";
-    } else {
-        navTarget.removeAttribute("id");
-    }
-})
 
 window.addEventListener("keydown", (k) => {
     if (k.key = "Control") {
@@ -109,3 +102,5 @@ window.addEventListener("popstate", (e) => {
     const p = window.location.pathname;
     redirect(p, 0)
 })
+
+applySwiper();
