@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOGS</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -37,28 +37,68 @@
                 <div class="blog-blocks extends swiper" id="recent-swiper">
                     <!-- swiper transition -->
                     <div class="swiper-wrapper">
-                        <!-- Image and text container -->
+                        <!-- Image and text container of a slide -->
                         <div class="card-cover swiper-slide">
                             <img src="./images/blog-thumbnail-main.png" alt="The code lines of a piece of CSS file">
                             
                             <div class="inner-subject">
                                 <!-- tags -->
                                 <div class="blog-tags">
+                                    <span class="profile">- unknown -</span> <!-- A profile name is at the tag to reduce space occupation over the content. -->
                                     <span>Web Application</span>
                                     <span>Media</span>
                                 </div>
-    
+                                
                                 <!-- blog title -->
                                 <div class="title-heading">
                                     <h2>A Crown For The Coders</h2>
-                                    <span class="profile">- unknown -</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="card-cover swiper-slide">
+                            <img src="./images/css-advance.png" alt="The code lines of a piece of CSS file">
+                            
+                            <div class="inner-subject">
+                                <!-- tags -->
+                                <div class="blog-tags">
+                                    <span class="profile">- unknown -</span>
+                                    <span>Web Illustration</span>
+                                </div>
+                                
+                                <!-- blog title -->
+                                <div class="title-heading">
+                                    <h2>The Cores Of CSS Styling</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-cover swiper-slide">
+                            <img src="./images/toolkit-responsive-blog.jpg" alt="The code lines of a piece of CSS file">
+                            
+                            <div class="inner-subject">
+                                <!-- tags -->
+                                <div class="blog-tags">
+                                    <span class="profile">- unknown -</span>
+                                    <span>Responsive Media</span>
+                                </div>
 
+                                <!-- blog title -->
+                                <div class="title-heading">
+                                    <h2>Web Responsive Layouts</h2>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="icon swiper-button-prev"></div>
+                    <div class="icon swiper-button-next"></div>
                 </div>
+
+                <!--------------------------------------------->
+
                 <!-- A CROWN FOR THE CODERS - example layout of block card -->
                 <div class="blog-blocks" id="v-2501">
                     <!-- Image and text container -->
@@ -144,8 +184,9 @@
         name
     </footer>
 
-    <script src="./quicktransition.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    
+    <script type="module" src="./quicktransition.js"></script>
+    <script src="./script.js"></script>
+
 </body>
 </html>
