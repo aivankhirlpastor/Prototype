@@ -67,6 +67,21 @@ function redirect(link, click, scrollToTop) {
 
                     if (to.getAttribute("href") === processLink) {
                         to.classList.add("active");
+                        switch (processLink) {
+                            case "index.html":
+                                document.title = "HTML coders";
+                                break;
+                            case "blogs.html":
+                                document.title = "BLOGS";
+                                break;
+                            case "signup.html":
+                                document.title = "SIGN UP - DIV CONST";
+                                break;
+                            case "contact.html":
+                                document.title = "CONTACT US";
+                                break;
+                        }
+
                     }
                 });
 
@@ -89,7 +104,7 @@ document.querySelectorAll("a.nav-link").forEach(e => {
 });
 
 window.addEventListener("keydown", (k) => {
-    if (k.key = "Control") {
+    if (k.key === "Control") {
         controlpressed = true;
     }
 })
