@@ -182,15 +182,16 @@ header {
         transition: color 0.25s ease;
     }
 
-    &#blackkey-contrast {
+    &#blackkey-contrast, &:has(.show-space) {
         --nav-text-color: #ffffff;
         background-color: #000000;
+
+        /* icon inversion colour */
+        nav + #hamburger-menu img {
+            filter: invert(1);
+        }
     }
 
-    /* icon inversion colour */
-    &#blackkey-contrast nav + #hamburger-menu img {
-        filter: invert(1);
-    }
 }
 
 nav {
@@ -227,20 +228,22 @@ nav {
                 filter: brightness(0.3);
             }
 
-            &#home::after {
-                background-color: #c0670e;
+            &#home {
+                --nav-a-pseudo-bg: #c0670e;
             }
-            &#blogs::after {
-                background-color: #08a53a;
+            &#blogs {
+                --nav-a-pseudo-bg: #08a53a;
             }
-            &#signup::after {
-                background-color: #09b0bc;
+            &#signup {
+                --nav-a-pseudo-bg: #09b0bc;
             }
-            &#contact::after {
-                background-color: #d11616;
+            &#contact {
+                --nav-a-pseudo-bg: #d11616;
             }
 
             &::after {
+
+                background-color: var(--nav-a-pseudo-bg);
                 filter: none;
                 left: 0;
                 right: 0;
@@ -289,6 +292,7 @@ article {
     padding-inline: 24px;
 }
 
+/* layers of Integration Presence found in index.html */
 .integration-info.grid {
     --text-symbol-extent: calc(3vw + 1em);
     --text-p-extent: calc(0.8vw + 1em);
@@ -319,7 +323,7 @@ article {
     }
 }
 
-
+/* Cards of Suggested Courses found in index.html */
 .sec-card {
     /* background-color: aqua; */
     display: flex;
@@ -395,6 +399,7 @@ article {
     }
 }
 
+/* Banner legend at the top of the web screen */
 section.legend {
     background-color: var(--wc-banner-bg);
     height: var(--wc-banner-height);
@@ -416,6 +421,7 @@ section.legend {
     }
 }
 
+/* Inherited on the sec-card of Suggested Course */
 section.proposal-card {
     display: grid;
     grid-template-columns: repeat(2, 45vw);
@@ -424,7 +430,7 @@ section.proposal-card {
     justify-content: center;
 }
 
-/* subscription card */
+/* subscription card found on index.html */
 section.subscription-plans {
     display: flex;
     flex-direction: row;
@@ -442,10 +448,12 @@ section.subscription-plans {
 
 }
 
+/* Information about the subscription and its aspects */
 section.subscription-plans .cc-account {
     text-align: center;
 }
 
+/* subscription cards */
 section.subscription-plans #subscription-banner {
     --s-card-border-radius: 1em;
     --s-card-bg-special: #000159cc;
@@ -1094,9 +1102,61 @@ footer section.footer-link-flex {
 
 /* media queries */
 @media only screen and (max-width: 48rem) {
-    nav {
-        display: none;
+    header:has(.show-space)::before {
+        content: "";
         position: absolute;
+        background: #ffffff77;
+        left: 0;
+        right: 0;
+        top: 100%;
+        bottom: -2000%;
+        transition: all 0.2s ease;
+    }
+
+    nav {
+        background-color: #000000;
+        display: block;
+        opacity: 0;
+        padding-block: 2em;
+        padding-inline: 3em 5em;
+        position: absolute;
+        top: calc(30px + var(--nav-height-extent));
+        right: -3em;
+
+        transition: opacity 0.25s ease, right 0.5s ease;
+
+        &:not(.per-disclose) {
+            transform: translateX(14em); /* concealed nav with transform to prevent triggers for the links */
+        }
+
+        &.show-space {
+            opacity: 1;
+            right: 0;
+        }
+        
+        ul {
+            display: inline;
+            flex-direction: row;
+        }
+
+        /* styles of lists inside <ul> */
+        ul li {
+            text-align: center; /* centered text */
+            width: 100%;
+            margin-block: 2em;
+            padding-inline: 1em;
+
+            a {
+                background: var(--nav-a-pseudo-bg);
+                display: block;
+                width: 100%;
+                padding: 0.3em 0;
+            }
+
+            a::after {
+                content: none;
+            }
+        }
     }
 
     nav + #hamburger-menu {
@@ -1172,6 +1232,16 @@ footer section.footer-link-flex {
     .middle-form-flex {
         gap: 0;
         justify-content: center;
+        flex-direction: column;
+    }
+
+    /* blog */
+    section.blog-menu .post-navigation {
+        grid-template-columns: repeat(2, 15em);
+    }
+
+    /* contact boards */
+    section.contact-boards {
         flex-direction: column;
     }
 
