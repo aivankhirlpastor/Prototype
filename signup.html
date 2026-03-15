@@ -13,14 +13,15 @@
         <h1 class="company-name">DIV CONST</h1>
 
         <!-- Embodied in <nav> tag inside the <header> -->
-        <nav class="nav-bar">
+        <nav class="nav-bar" id="nav-links">
             <ul>
-                <li><a id="home" class="nav-link" href="index.html">HOME</a></li>
+                <li><a id="home" class="nav-link active" href="index.html">HOME</a></li>
                 <li><a id="blogs" class="nav-link" href="blogs.html">BLOGS</a></li>
-                <li><a id="signup" class="nav-link active" href="signup.html">SIGN UP</a></li>
+                <li><a id="signup" class="nav-link" href="signup.html">SIGN UP</a></li>
                 <li><a id="contact" class="nav-link" href="contact.html">CONTACT</a></li>
             </ul>
         </nav>
+        <button type="button" id="hamburger-menu"><img src="./icons/more.svg" alt="An icon resembling a hamburger menu by three horizontal bars"></button>
     </header>
     <main>
         <!-- <section class="sign-up-lobby legend">
@@ -89,7 +90,36 @@
 
     </main>
     <footer>
-        name
+        <span>DIV CONST</span>
+
+        <section class="footer-link-flex">
+            <div class="linkdisplay quick-links">
+                <h2>Organisations</h2>
+                <ul>
+                    <li class="footer-atr"><a>Home</a></li>
+                    <li class="footer-atr"><a>Service</a></li>
+                    <li class="footer-atr"><a>Blogs</a></li>
+                    <li class="footer-atr"><a>Contribute</a></li>
+                    <li class="footer-atr"><a>Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="linkdisplay documental-links">
+                <h2>References</h2>
+                <ul>
+                    <li class="footer-atr"><a>Attribution</a></li>
+                    <li class="footer-atr"><a>Documents</a></li>
+                    <li class="footer-atr"><a>Education</a></li>
+                </ul>
+            </div>
+            <div class="linkdisplay documental-links">
+                <h2>Policies</h2>
+                <ul>
+                    <li class="footer-atr"><a>Terms of Use</a></li>
+                    <li class="footer-atr"><a>Terms and Conditions</a></li>
+                    <li class="footer-atr"><a>Privacy</a></li>
+                </ul>
+            </div>
+        </section>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
