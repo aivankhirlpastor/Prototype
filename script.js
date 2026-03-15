@@ -1,3 +1,5 @@
+// defining variables
+const navBar = document.getElementById("nav-links")
 
 // add event listeners
 
@@ -12,3 +14,7 @@ document.addEventListener("scroll", (sc) => {
         navTarget.removeAttribute("id");
     }
 })
+
+document.getElementById("hamburger-menu").addEventListener("click", () => {
+    navBar.classList.toggle("show-space");
+});
