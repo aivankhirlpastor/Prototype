@@ -21,6 +21,13 @@
     --wc-banner-height: 12rem;
     --wc-banner-padding-block: 30px;
 
+    /* footer properties */
+    --footer-bg: #333;
+    --footer-font-color: #fff;
+    --footer-height: 1.2em;
+    --footer-linkdisplay-space-offset: 2em;
+
+
     /* font property for Roboto Flex */
     --roboto-flex-variation: "slnt" 0,
         "wdth" 80,
@@ -179,9 +186,15 @@ header {
         --nav-text-color: #ffffff;
         background-color: #000000;
     }
+
+    /* icon inversion colour */
+    &#blackkey-contrast nav + #hamburger-menu img {
+        filter: invert(1);
+    }
 }
 
 nav {
+    /* lists of links */
     ul {
         display: inline-flex;
         gap: 2rem;
@@ -190,9 +203,11 @@ nav {
         padding: 0;
     }
 
+    /* styles of lists inside <ul> */
     ul li {
         text-wrap: nowrap;
 
+        /* button links */
         a {
             color: var(--nav-text-color);
             font-size: 1.1em;
@@ -258,6 +273,7 @@ nav {
     }
 }
 
+/* button of hamburger menu: hidden at laptop screen orientation */
 nav + #hamburger-menu {
     display: none;
 }
@@ -1029,15 +1045,51 @@ section.contact-boards .contact-clipboard-flex > .contact-block {
     }
 }
 
-
+/* FOOTER */
 footer {
-    /* footer properties */
-    --footer-height: 1.2em;
-
-    background-color: #333;
-    color: #fff;
-    font-size: 1.2rem;
+    /* footer body */
+    background: var(--footer-bg);
+    color: var(--footer-font-color);
+    font-size: 0.8rem;
+    min-height: var(--footer-height);
     padding: 1.5rem;
+
+    * {
+        color: inherit;
+    }
+}
+
+footer section.footer-link-flex {
+    display: flex;
+    gap: var(--footer-linkdisplay-space-offset);
+    justify-content: center;
+
+    /* each section of varieties of class e.g. Quick Links */
+    .linkdisplay {
+        border-left: 0.1em solid #fff;
+        padding-inline: var(--footer-linkdisplay-space-offset);
+    }
+
+    .linkdisplay h2 {
+        font-size: 1.15em;
+        margin-block: 0.1em 0.6em;
+    }
+
+    .linkdisplay ul {
+        margin-block: 0.5em;
+        padding: 0;
+
+        li {
+            list-style: none; /* remove bullet points */
+            margin-block: 0.5em;
+        }
+
+        li a {
+            font-weight: 225;
+            letter-spacing: 0.08em;
+            text-transform: lowercase; /* all characters to lowercase */
+        }
+    }
 }
 
 /* media queries */
@@ -1049,6 +1101,22 @@ footer {
 
     nav + #hamburger-menu {
         display: block;
+        filter: none;
+        padding: 0;
+        margin: 0;
+        width: 2em;
+        height: 2em;
+        
+        > img {
+            width: 2em;
+            height: 2em;
+            transition: filter 0.25s ease;
+        }
+
+        /* remove the effect of pseudo elements by setting content to none */
+        &::before, &::after {
+            content: none;
+        }
     }
 
     .sec-card {
@@ -1105,5 +1173,13 @@ footer {
         gap: 0;
         justify-content: center;
         flex-direction: column;
+    }
+
+    footer section.footer-link-flex {
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        /* .linkdisplay {
+        } */
     }
 }
