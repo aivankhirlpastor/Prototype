@@ -17,4 +17,17 @@ document.addEventListener("scroll", (sc) => {
 
 document.getElementById("hamburger-menu").addEventListener("click", () => {
     navBar.classList.toggle("show-space");
+    navBar.classList.add("per-disclose");
+});
+
+navBar.addEventListener("transitionend", (t) => {
+    if (!navBar.classList.contains("show-space")) {
+        navBar.classList.remove("per-disclose");
+    }
+});
+
+document.querySelectorAll(".nav-link").forEach(e => {
+    e.addEventListener("click", (c) => {
+        navBar.classList.remove("show-space");
+    })
 });
