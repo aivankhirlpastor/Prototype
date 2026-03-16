@@ -446,6 +446,18 @@ section.legend {
     }
 }
 
+/* image */
+section.welcome-banner.legend {
+    background-image: url(./images/pexels-harold-vasquez-853421-2653362.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+
+    * {
+        text-shadow: 0.05em 0.05em 0 #041df9;
+    }
+}
+
 /* Inherited on the sec-card of Suggested Course */
 section.proposal-card {
     display: grid;
