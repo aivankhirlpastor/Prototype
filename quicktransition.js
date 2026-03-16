@@ -1,5 +1,5 @@
 // console.log(document.querySelectorAll("a"));
-import { applySwiper } from './swiper.js';
+import { applySwiper, initialVariable } from './initial.js';
 
 let controlpressed = false;
 
@@ -76,6 +76,7 @@ function translateData(data, link, c, scrollToTop) {
 
     // external function
     applySwiper();
+    initialVariable();
 }
 
 // redirect url transition operation : function of previous "redirect()"
@@ -128,3 +129,4 @@ window.addEventListener("popstate", (e) => {
 })
 
 applySwiper();
+initialVariable();
