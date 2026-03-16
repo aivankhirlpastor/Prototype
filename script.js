@@ -1,6 +1,23 @@
 // defining variables
 const navBar = document.getElementById("nav-links")
 
+function swapIconMenu(forceclose) {
+    const targetButton = document.querySelector("#hamburger-menu img");
+
+    if (forceclose === true) {
+        navBar.classList.remove("show-space");
+    } else {
+        navBar.classList.add("per-disclose");
+        navBar.classList.toggle("show-space");
+    }
+    
+    if (navBar.classList.contains("show-space")) {
+        targetButton.setAttribute("src", "./icons/x_symbol.svg");
+    } else {
+        targetButton.setAttribute("src", "./icons/more.svg");
+    }
+}
+
 // add event listeners
 
 document.addEventListener("scroll", (sc) => {
@@ -15,10 +32,7 @@ document.addEventListener("scroll", (sc) => {
     }
 })
 
-document.getElementById("hamburger-menu").addEventListener("click", () => {
-    navBar.classList.toggle("show-space");
-    navBar.classList.add("per-disclose");
-});
+document.getElementById("hamburger-menu").addEventListener("click", swapIconMenu);
 
 navBar.addEventListener("transitionend", (t) => {
     if (!navBar.classList.contains("show-space")) {
@@ -26,8 +40,16 @@ navBar.addEventListener("transitionend", (t) => {
     }
 });
 
-document.querySelectorAll(".nav-link").forEach(e => {
+document.querySelectorAll(".nav-link").forEach(e => {  
     e.addEventListener("click", (c) => {
-        navBar.classList.remove("show-space");
+        
+        if (navBar.classList.contains("show-space")) {
+            swapIconMenu();
+        }
     })
+});
+
+window.addEventListener("resize", () => {
+    navBar.classList.remove("show-space");
+    swapIconMenu(true);
 });
