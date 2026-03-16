@@ -25,7 +25,12 @@
     --footer-bg: #333;
     --footer-font-color: #fff;
     --footer-height: 1.2em;
-    --footer-linkdisplay-space-offset: 2em;
+    --footer-type-board-space-offset: 2em;
+
+    /* restore info property */
+    :has(#subscription-banner.disclosed) {
+        --restore-visibility: visible;
+    }
 
 
     /* font property for Roboto Flex */
@@ -182,6 +187,8 @@ header {
         transition: color 0.25s ease;
     }
 
+    /* effect applies for the header and nav if the scroll position is more than 58. 
+        See script.js and find the phrase "if (window.scrollY > 58) {". */
     &#blackkey-contrast, &:has(.show-space) {
         --nav-text-color: #ffffff;
         background-color: #000000;
@@ -189,6 +196,14 @@ header {
         /* icon inversion colour */
         nav + #hamburger-menu img {
             filter: invert(1);
+        }
+
+        nav + #hamburger-menu:hover {
+            --nav-hmb-menu-bghover: #ffffff;
+
+            img {
+                filter: none;
+            }
         }
     }
 
@@ -276,9 +291,19 @@ nav {
     }
 }
 
-/* button of hamburger menu: hidden at laptop screen orientation */
+/* button of hamburger menu: hidden at laptop screen orientation 
+    original styling without #blackkey-contrast from <header> */
 nav + #hamburger-menu {
+    background-color: var(--nav-hmb-menu-bghover);
     display: none;
+
+    &:hover {
+        --nav-hmb-menu-bghover: #000000;
+
+        img {
+            filter: invert(1);
+        }
+    }
 }
 
 main {
@@ -295,7 +320,7 @@ article {
 /* layers of Integration Presence found in index.html */
 .integration-info.grid {
     --text-symbol-extent: calc(3vw + 1em);
-    --text-p-extent: calc(0.8vw + 1em);
+    --text-p-extent: calc(0.8vw + 0.9em);
 
     gap: 1em;
     grid-template-columns: repeat(3, 30%);
@@ -402,7 +427,7 @@ article {
 /* Banner legend at the top of the web screen */
 section.legend {
     background-color: var(--wc-banner-bg);
-    height: var(--wc-banner-height);
+    min-height: var(--wc-banner-height);
     padding: var(--wc-banner-padding-block) calc(var(--wc-banner-padding-block) - 5px);
     text-align: right;
     align-content: end;
@@ -417,7 +442,7 @@ section.legend {
     }
 
     p {
-        font-size: 1.2rem;
+        font-size: clamp(0.4rem, 5vw, 1.3rem);
     }
 }
 
@@ -440,6 +465,7 @@ section.subscription-plans {
     .cc-account {
         opacity: 1;
         transition: opacity 400ms ease;
+        width: 40%;
     }
 
     &:has(.disclosed) .cc-account {
@@ -469,6 +495,7 @@ section.subscription-plans #subscription-banner {
     justify-content: space-between;
     position: relative;
 
+    /* plan card feature */
     .sub-card {
         --s-drop-shadow: 0 0.3em 20px #000000aa;
 
@@ -479,6 +506,7 @@ section.subscription-plans #subscription-banner {
         position: inherit;
         width: 13em;
 
+        /* Types of Plans */
         .card-plan {
             --s-card-padding: 2.5em;
             /* background-color: rgb(0, 247, 255); */
@@ -492,6 +520,7 @@ section.subscription-plans #subscription-banner {
             text-align: center;
         }
 
+        /* tracking price */
         h3 {
             font-size: 2em;
             font-weight: 700;
@@ -502,7 +531,8 @@ section.subscription-plans #subscription-banner {
         h3 span {
             font: 400 0.5em var(--space-grotesk);
         }
-        
+
+        /* heading of the plan */
         .type-plan {
             display: block;
             font-size: 1.2em;
@@ -580,6 +610,7 @@ section.subscription-plans #subscription-banner {
         }
     }
 
+    /* consisting of special efx */
     .sub-card.popular {
         --s-card-glass-efx: blur(20px) saturate(180%) contrast(60%);
 
@@ -587,7 +618,9 @@ section.subscription-plans #subscription-banner {
         border: 0.1em solid rgba(82, 5, 88, 0.55);
         box-shadow: var(--s-drop-shadow),
             inset 0.2em 0.2em 1em #ffffff77,
-            inset -0.2em -0.2em 1em #00000077;
+            inset -0.2em -0.2em 1em #00000077,
+            0 0 1em var(--s-card-bg-special),
+            0 0 0.3em #ffffff;
 
         /* glass effects */
         backdrop-filter: var(--s-card-glass-efx);
@@ -603,6 +636,14 @@ section.subscription-plans #subscription-banner {
             color: #ffffff;
         }
     }
+}
+
+/* restore plan information button */
+#restore-info {
+    display: flex;
+    justify-self: end;
+    margin-right: 4em;
+    visibility: var(--restore-visibility, hidden);
 }
 
 /* for 404 html styling */
@@ -671,6 +712,7 @@ section.blog-menu .post-navigation {
         grid-column-end: span 2;
     }
     
+    /* swiper: recent blogs */
     .blog-blocks.swiper {
         width: 100%;
         
@@ -807,6 +849,7 @@ section.blog-menu .post-navigation {
         }
     }
 
+    /* img effect at hover */
     .blog-blocks:hover {
         cursor: pointer;
 
@@ -819,6 +862,7 @@ section.blog-menu .post-navigation {
         }
     }
 
+    /* shows up information upon hover excluding the class with .extends */
     .blog-blocks:hover:not(.extends) .card-cover{
         .inner-subject .blog-tags span {
             background-color: #dadada99;
@@ -842,6 +886,7 @@ section.sign-up-board {
     margin-block: 2em;
 }
 
+/* main body of sign-up-form */
 section.sign-up-board .sign-up-flex {
     align-items: center;
     display: flex;
@@ -849,6 +894,7 @@ section.sign-up-board .sign-up-flex {
     justify-content: space-evenly;
 }
 
+/* simply related to the theme */
 section.sign-up-board .sign-up-block.info-persuasive {
     background-color: var(--color-p-3);
     border: 0.5em solid #000000;
@@ -893,6 +939,7 @@ section.sign-up-board .sign-up-block {
         }
     }
 
+    /* input element properties */
     form section.form-block > input {
         --form-input-bg: #bcfff9;
         --form-font-weight: 600;
@@ -967,7 +1014,6 @@ section.contact-boards {
     }
 }
 
-/* acted-style clipboards */
 section.contact-boards .contact-clipboard-flex {
     align-items: center;
     display: flex;
@@ -975,14 +1021,30 @@ section.contact-boards .contact-clipboard-flex {
     font-size: clamp(0.5em, 2vw, 2em);
     /* justify-content: center; */
     margin-top: 1.2em;
-
+    
     &.paragraph-job {
         align-self: flex-start;
         position: sticky;
         top: 6em;
     }
+
+    &.paragraph-job .contact-information {
+        font-size: 1em;
+        margin-top: 1em;
+
+        h2 {
+            text-align: center;
+            margin-block: 0;
+        }
+
+        p {
+            font-size: 1.3em;
+            margin-block: 0.2em;
+        }
+    }
 }
 
+/* acted-style clipboards - contact type queries */
 section.contact-boards .contact-clipboard-flex > .contact-block {
     --contact-callout-transform: 2.3em;
     --contact-inquiries-padding-top: var(--contact-callout-transform);
@@ -1060,30 +1122,36 @@ footer {
     color: var(--footer-font-color);
     font-size: 0.8rem;
     min-height: var(--footer-height);
-    padding: 1.5rem;
+    padding: 0.5rem 2rem 1.5rem;
 
     * {
         color: inherit;
+    }
+
+    p#about-organisation {
+        font-weight: 225;
+        letter-spacing: 0.08em;
+        margin-block: 1em 2em;
     }
 }
 
 footer section.footer-link-flex {
     display: flex;
-    gap: var(--footer-linkdisplay-space-offset);
+    gap: var(--footer-type-board-space-offset);
     justify-content: center;
 
     /* each section of varieties of class e.g. Quick Links */
-    .linkdisplay {
+    .type-board {
         border-left: 0.1em solid #fff;
-        padding-inline: var(--footer-linkdisplay-space-offset);
+        padding-inline: var(--footer-type-board-space-offset);
     }
 
-    .linkdisplay h2 {
+    .type-board h3 {
         font-size: 1.15em;
-        margin-block: 0.1em 0.6em;
+        margin-block: 0 0.6em;
     }
 
-    .linkdisplay ul {
+    .type-board ul {
         margin-block: 0.5em;
         padding: 0;
 
@@ -1093,10 +1161,13 @@ footer section.footer-link-flex {
         }
 
         li a {
-            font-weight: 225;
-            letter-spacing: 0.08em;
             text-transform: lowercase; /* all characters to lowercase */
         }
+    }
+    
+    .type-board ul li a {
+        font-weight: 225;
+        letter-spacing: 0.08em;
     }
 }
 
@@ -1153,6 +1224,10 @@ footer section.footer-link-flex {
                 padding: 0.3em 0;
             }
 
+            a:hover {
+                background-color: #666666;
+            }
+
             a::after {
                 content: none;
             }
@@ -1166,11 +1241,12 @@ footer section.footer-link-flex {
         margin: 0;
         width: 2em;
         height: 2em;
+        transition: background-color 0.25s ease; /* at screen less than 48rem */
         
         > img {
             width: 2em;
             height: 2em;
-            transition: filter 0.25s ease;
+            transition: filter 0.25s ease; /* at screen less than 48rem */
         }
 
         /* remove the effect of pseudo elements by setting content to none */
@@ -1184,16 +1260,24 @@ footer section.footer-link-flex {
         font-size: clamp(0.8rem, 3vw, 2rem);
     }
 
+    /* card course */
     section.proposal-card {
         grid-template-columns: none;
         grid-template-rows: repeat(2, auto);
     }
 
     /* subscription card */
-
     section.subscription-plans {
         flex-direction: column;
         gap: 3em;
+
+        .cc-account {
+            width: 100%;
+
+            #show-more {
+                display: none;
+            }
+        }
     }
 
     section.subscription-plans #subscription-banner {
@@ -1216,6 +1300,7 @@ footer section.footer-link-flex {
             }
     
             ul {
+                font-size: 1.2em;
                 padding-inline-start: 6%;
             }
         };
@@ -1237,19 +1322,41 @@ footer section.footer-link-flex {
 
     /* blog */
     section.blog-menu .post-navigation {
+        font-size: clamp(0.5rem, 2.8vw, 2rem);
         grid-template-columns: repeat(2, 15em);
+    }
+
+    /* sign up board */
+    .sign-up-board .sign-up-block.info-persuasive {
+        display: none; /* hidden to give space for user at sign-up-form */
     }
 
     /* contact boards */
     section.contact-boards {
         flex-direction: column;
+
+        .connect-box {
+            width: 100%;
+        }
+
+        .contact-clipboard-flex {
+            &.paragraph-job {
+                flex-direction: row;
+                justify-content: space-evenly;
+                position: relative;
+                top: 0;
+            }
+        }
     }
+
+
+    /* footer */
 
     footer section.footer-link-flex {
         flex-direction: column;
         flex-wrap: wrap;
 
-        /* .linkdisplay {
+        /* .type-board {
         } */
     }
 }
